@@ -9,7 +9,20 @@
         /// <param name="array">Input array in a random order.</param>
         public static void Sort(int[] array)
         {
-            // ToDo: implement.
+            if (array != null && array.Length != 0)
+            {
+                for (int i = 0; i < array.Length - 1; i++)
+                {
+                    for (int j = i + 1; j < array.Length; j++)
+                    {
+                        if (array[i] > array[j]) {
+                            int temp = array[i]; 
+                            array[i] = array[j]; 
+                            array[j] = temp; 
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -19,7 +32,21 @@
         /// <param name="array">Input array in a random order.</param>
         public static void Reverse(int[] array)
         {
-            // ToDo: implement.
+            if (array != null && array.Length != 0)
+            {
+                int temp;
+                int start = 0;
+                int end = array.Length - 1;
+          
+                while (start < end) 
+                { 
+                    temp = array[start];
+                    array[start] = array[end]; 
+                    array[end] = temp; 
+                    start++; 
+                    end--; 
+                }
+            }
         }
 
         /// <summary>
@@ -29,8 +56,17 @@
         /// <returns>A new array with the last element removed. If an array is empty or null, returns input array.</returns>
         public static int[] RemoveLast(int[] array)
         {
-            // ToDo: implement.
-            return array;
+            if (array == null || array.Length == 0)
+            {
+                return array;
+            }
+
+            var result = new int[array.Length - 1];
+            for (int i = 0; i < array.Length - 1; i++)
+            {
+               result[i] = array[i]; 
+            }
+            return result;
         }
 
         /// <summary>
@@ -39,8 +75,17 @@
         /// <returns>A new array with the first element removed. If an array is empty or null, returns input array.</returns>
         public static int[] RemoveFirst(int[] array)
         {
-            // ToDo: implement.
-            return array;
+            if (array == null || array.Length == 0)
+            {
+                return array;
+            }
+
+            var result = new int[array.Length - 1];
+            for (int i = 1; i < array.Length; i++)
+            {
+               result[i - 1] = array[i]; 
+            }
+            return result;
         }
 
         /// <summary>
@@ -51,8 +96,29 @@
         /// <returns>A new array with element removed at a given index. If an array is empty or null, returns input array.</returns>
         public static int[] RemoveAt(int[] array, int index)
         {
-            // ToDo: implement.
-            return array;
+            if (array == null || array.Length == 0 || index < 0 || index >= array.Length)
+            {
+                return array;
+            }
+
+            var result = new int[array.Length - 1];
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (i < index)
+                {
+                    result[i] = array[i];
+                }
+                else if (i == index)
+                {
+                    continue;
+                }
+                else
+                {
+                    result[i - 1] = array[i];
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -63,8 +129,19 @@
         /// <returns>A new array with element added at a given index. If an array is empty or null, returns new array with number in it.</returns>
         public static int[] InsertFirst(int[] array, int number)
         {
-            // ToDo: implement.
-            return array;
+            if (array == null || array.Length == 0)
+            {
+                return new int[] { number };
+            }
+
+            var result = new int[array.Length + 1];
+            result[0] = number;
+            for (int i = 0; i < array.Length; i++)
+            {
+                result[i + 1] = array[i];
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -75,8 +152,19 @@
         /// <returns>A new array with element added in the end of array. If an array is empty or null, returns new array with number in it.</returns>
         public static int[] InsertLast(int[] array, int number)
         {
-            // ToDo: implement.
-            return array;
+            if (array == null || array.Length == 0)
+            {
+                return new int[] { number };
+            }
+
+            var result = new int[array.Length + 1];
+            for (int i = 0; i < array.Length; i++)
+            {
+                result[i] = array[i];
+            }
+            result[result.Length - 1] = number;
+
+            return result;
         }
 
         /// <summary>
@@ -88,8 +176,33 @@
         /// <returns>A new array with element inserted at a given index. If an array is empty or null, returns new array with number in it.</returns>
         public static int[] InsertAt(int[] array, int number, int index)
         {
-            // ToDo: implement.
-            return array;
+            if (array == null || array.Length == 0)
+            {
+                if (index == 0) {
+                    return new int[] { number };
+                }
+
+                return array;
+            }
+
+            var result = new int[array.Length + 1];
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (i < index)
+                {
+                    result[i] = array[i];
+                }
+                else if (i == index)
+                {
+                    result[i] = number;
+                }
+                else
+                {
+                    result[i + 1] = array[i];
+                }
+            }
+
+            return result;
         }
     }
 }
