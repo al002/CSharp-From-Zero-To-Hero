@@ -16,26 +16,70 @@ namespace BootCamp.Chapter
     {
         public static int PromptInt(string message)
         {
-            // To do: call your implementation. 
-            return 0;
+            Console.WriteLine(message);
+            var input = Console.ReadLine();
+            if (String.IsNullOrEmpty(input)) {
+                return 0;
+            }
+            int n;
+            var isNumberic = int.TryParse(input, out n);
+            if (!isNumberic)
+            {
+                Console.Write($"\"{input}\" is not a valid number.");
+                return -1;
+            }
+            return n;
         }
 
         public static string PromptString(string message)
         {
-            // To do: call your implementation. 
-            return "";
+            Console.WriteLine(message);
+            var input = Console.ReadLine();
+
+            if (String.IsNullOrEmpty(input))
+            {
+                Console.Write("Name cannot be empty.");
+                return "-";
+            }
+
+            return input;
         }
 
         public static float PromptFloat(string message)
         {
-            // To do: call your implementation. 
-            return 0;
+            Console.WriteLine(message);
+            var input = Console.ReadLine();
+            if (String.IsNullOrEmpty(input)) {
+                return 0;
+            }
+            float n;
+            var isNumberic = float.TryParse(input, out n);
+            if (!isNumberic)
+            {
+                Console.Write($"\"{input}\" is not a valid number.");
+                return -1;
+            }
+            return n;
         }
 
         public static float CalculateBmi(float weight, float height)
         {
-            // To do: call your implementation. 
-            return 0;
+            if (weight <= 0 || height <= 0) {
+                Console.WriteLine("Failed calculating BMI. Reason:");
+                if (weight <= 0)
+                {
+                    Console.WriteLine($"Weight cannot be equal or less than zero, but was {weight}.");
+                }
+
+                if (height <= 0)
+                {
+                    string equalOr = weight <= 0 ? "" : " equal or";
+                    Console.WriteLine($"Height cannot be{equalOr} less than zero, but was {height}.");
+
+                }
+                return -1;
+            }
+            return weight / (height * height);
         }
     }
 }
