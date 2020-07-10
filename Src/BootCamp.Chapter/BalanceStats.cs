@@ -1,4 +1,6 @@
-﻿namespace BootCamp.Chapter
+﻿using System;
+
+namespace BootCamp.Chapter
 {
     public static class BalanceStats
     {
@@ -7,7 +9,46 @@
         /// </summary>
         public static string FindHighestBalanceEver(string[] peopleAndBalances)
         {
-            return "";
+            if (peopleAndBalances == null || peopleAndBalances.Length == 0)
+            {
+                return "N/A.";
+            }
+
+            float maxBalance = 0;
+            string[] names = new string[peopleAndBalances.Length];
+            for (int j = 0; j < peopleAndBalances.Length; j++)
+            {
+                var item = peopleAndBalances[j];
+                bool hasMax = false;
+                var arr = item.Split(", ");
+
+                for (int i = 1; i < arr.Length; i++)
+                {
+                    var balance = float.Parse(arr[i]);
+                    if (balance >= maxBalance)
+                    {
+                        maxBalance = balance;
+                        hasMax = true;
+                    }
+                }
+
+                if (hasMax)
+                {
+                    names[names.Length - 1] = arr[0];
+                }
+            }
+
+            string nameStr = "";
+            if (names.Length > 1)
+            {
+                nameStr = String.Join(", ", names, 0, names.Length - 1) + $" and {names[names.Length - 1]}";
+            }
+            else
+            {
+                nameStr = names[0];
+            }
+            
+            return $"{nameStr} had the most money ever. ¤{maxBalance}.";
         }
 
         /// <summary>
