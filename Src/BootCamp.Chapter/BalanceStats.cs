@@ -56,7 +56,32 @@ namespace BootCamp.Chapter
         /// </summary>
         public static string FindPersonWithBiggestLoss(string[] peopleAndBalances)
         {
-            return "";
+            if (peopleAndBalances == null || peopleAndBalances.Length <= 2)
+            {
+                return "N/A.";
+            }
+
+            var name = "";
+            float biggestLoss = 0;
+
+            for (int i = 0; i < peopleAndBalances.Length; i++)
+            {
+                var item = peopleAndBalances[i];
+                var arr = item.Split(", ");
+
+                for (int j = 1; j < arr.Length - 1; j++)
+                {
+                    var current = float.Parse(arr[j]);
+                    var next = float.Parse(arr[j + 1]);
+                    var loss = current - next;
+
+                    if (loss < biggestLoss) {
+                        biggestLoss = loss;
+                        name = arr[0];
+                    }
+                }
+            }
+            return $"{name} lost the most money. -¤{biggestLoss}.";
         }
 
         /// <summary>
